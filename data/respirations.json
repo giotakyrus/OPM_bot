@@ -1,0 +1,489 @@
+{
+  "water": {
+    "name": "Souffle de l'Eau",
+    "emoji": "💧",
+    "color": 4169E1,
+    "description": "Technique équilibrée, adaptable à toutes les situations",
+    "image_url": "https://kimetsu.com/anime/character/",
+    "techniques": [
+      {
+        "number": 1,
+        "name": "Surface Tension",
+        "damage_multiplier": 1.0,
+        "stamina_cost": 15,
+        "description": "Attaque de base fluide et précise"
+      },
+      {
+        "number": 2,
+        "name": "Water Wheel",
+        "damage_multiplier": 1.3,
+        "stamina_cost": 20,
+        "description": "Mouvement circulaire dévastateur"
+      },
+      {
+        "number": 3,
+        "name": "Flowing Dance",
+        "damage_multiplier": 1.2,
+        "stamina_cost": 18,
+        "description": "Danse fluide et gracieuse"
+      },
+      {
+        "number": 4,
+        "name": "Striking Tide",
+        "damage_multiplier": 1.4,
+        "stamina_cost": 22,
+        "description": "Vague déferlante d'attaques"
+      },
+      {
+        "number": 5,
+        "name": "Blessed Rain After the Drought",
+        "damage_multiplier": 1.5,
+        "stamina_cost": 25,
+        "description": "Technique puissante et régénérante"
+      },
+      {
+        "number": 6,
+        "name": "Whirlpool",
+        "damage_multiplier": 1.3,
+        "stamina_cost": 20,
+        "description": "Tourbillon aquatique"
+      },
+      {
+        "number": 7,
+        "name": "Drop Ripple Thrust",
+        "damage_multiplier": 1.4,
+        "stamina_cost": 23,
+        "description": "Perçage par ondulation"
+      },
+      {
+        "number": 8,
+        "name": "Waterfall Basin",
+        "damage_multiplier": 1.6,
+        "stamina_cost": 28,
+        "description": "Technique de cascade destructrice"
+      },
+      {
+        "number": 9,
+        "name": "Splashing Water Flow, Piercing Rain Drop",
+        "damage_multiplier": 1.5,
+        "stamina_cost": 26,
+        "description": "Combinaison eau et pluie"
+      },
+      {
+        "number": 10,
+        "name": "Constant Flux",
+        "damage_multiplier": 1.7,
+        "stamina_cost": 30,
+        "description": "Technique finale : flux constant de l'eau"
+      }
+    ]
+  },
+  "flame": {
+    "name": "Souffle de la Flamme",
+    "emoji": "🔥",
+    "color": 16728576,
+    "description": "Technique offensive et puissante, forte attaque",
+    "image_url": "https://kimetsu.com/anime/character/",
+    "techniques": [
+      {
+        "number": 1,
+        "name": "Unknowing Fire",
+        "damage_multiplier": 1.2,
+        "stamina_cost": 18,
+        "description": "Feu inconscient et destructeur"
+      },
+      {
+        "number": 2,
+        "name": "Rising Scorching Sun",
+        "damage_multiplier": 1.4,
+        "stamina_cost": 22,
+        "description": "Soleil ardent montant"
+      },
+      {
+        "number": 3,
+        "name": "Flame Tiger",
+        "damage_multiplier": 1.5,
+        "stamina_cost": 24,
+        "description": "Attaque féroce de tigre enflammé"
+      },
+      {
+        "number": 4,
+        "name": "Blooming Flame Undulation",
+        "damage_multiplier": 1.3,
+        "stamina_cost": 20,
+        "description": "Ondulation flamboyante"
+      },
+      {
+        "number": 5,
+        "name": "Flame Dance",
+        "damage_multiplier": 1.4,
+        "stamina_cost": 23,
+        "description": "Danse du feu"
+      },
+      {
+        "number": 6,
+        "name": "Raging Sun",
+        "damage_multiplier": 1.6,
+        "stamina_cost": 27,
+        "description": "Soleil furieux"
+      },
+      {
+        "number": 7,
+        "name": "Kindling Karma",
+        "damage_multiplier": 1.5,
+        "stamina_cost": 25,
+        "description": "Karma embrasé"
+      },
+      {
+        "number": 8,
+        "name": "Shower of Embers",
+        "damage_multiplier": 1.4,
+        "stamina_cost": 22,
+        "description": "Pluie de braises"
+      },
+      {
+        "number": 9,
+        "name": "Purgatorial Immolation",
+        "damage_multiplier": 1.7,
+        "stamina_cost": 30,
+        "description": "Immolation purgatrice"
+      }
+    ]
+  },
+  "wind": {
+    "name": "Souffle du Vent",
+    "emoji": "💨",
+    "color": 15658734,
+    "description": "Technique rapide et impulsive, haute vitesse",
+    "image_url": "https://kimetsu.com/anime/character/",
+    "techniques": [
+      {
+        "number": 1,
+        "name": "Dust Whirlwind Cutter",
+        "damage_multiplier": 1.1,
+        "stamina_cost": 16,
+        "description": "Lame de poussière tourbillonnante"
+      },
+      {
+        "number": 2,
+        "name": "Orbital Strike",
+        "damage_multiplier": 1.3,
+        "stamina_cost": 19,
+        "description": "Frappe orbitale"
+      },
+      {
+        "number": 3,
+        "name": "Sudden Gust",
+        "damage_multiplier": 1.2,
+        "stamina_cost": 17,
+        "description": "Rafale soudaine"
+      },
+      {
+        "number": 4,
+        "name": "Raging Hedgehog",
+        "damage_multiplier": 1.4,
+        "stamina_cost": 21,
+        "description": "Hérisson enragé"
+      },
+      {
+        "number": 5,
+        "name": "Cold Mountain Wind",
+        "damage_multiplier": 1.3,
+        "stamina_cost": 20,
+        "description": "Vent froid des montagnes"
+      },
+      {
+        "number": 6,
+        "name": "Black Wind Mountain Pass",
+        "damage_multiplier": 1.5,
+        "stamina_cost": 25,
+        "description": "Passage du col du vent noir"
+      },
+      {
+        "number": 7,
+        "name": "Piercing Whirlwind",
+        "damage_multiplier": 1.4,
+        "stamina_cost": 23,
+        "description": "Tourbillon perçant"
+      },
+      {
+        "number": 8,
+        "name": "Primary Gale Slash",
+        "damage_multiplier": 1.6,
+        "stamina_cost": 27,
+        "description": "Coup de tempête primaire"
+      }
+    ]
+  },
+  "stone": {
+    "name": "Souffle de la Pierre",
+    "emoji": "🪨",
+    "color": 8355711,
+    "description": "Technique défensive et stable, haute résilience",
+    "image_url": "https://kimetsu.com/anime/character/",
+    "techniques": [
+      {
+        "number": 1,
+        "name": "Serpent Strike",
+        "damage_multiplier": 1.0,
+        "stamina_cost": 14,
+        "description": "Coup serpentin"
+      },
+      {
+        "number": 2,
+        "name": "Granite Blast",
+        "damage_multiplier": 1.2,
+        "stamina_cost": 18,
+        "description": "Explosion de granit"
+      },
+      {
+        "number": 3,
+        "name": "Rock Skin",
+        "damage_multiplier": 0.8,
+        "stamina_cost": 12,
+        "description": "Peau de pierre (défense)"
+      },
+      {
+        "number": 4,
+        "name": "Volcanic Rock Rapid Conquest",
+        "damage_multiplier": 1.3,
+        "stamina_cost": 21,
+        "description": "Conquête rapide de roche volcanique"
+      },
+      {
+        "number": 5,
+        "name": "Armorclad Flesh",
+        "damage_multiplier": 0.9,
+        "stamina_cost": 13,
+        "description": "Chair blindée (défense)"
+      },
+      {
+        "number": 6,
+        "name": "Earthen Cradle",
+        "damage_multiplier": 1.4,
+        "stamina_cost": 22,
+        "description": "Berceau terrestre"
+      }
+    ]
+  },
+  "sound": {
+    "name": "Souffle du Son",
+    "emoji": "🔊",
+    "color": 16753920,
+    "description": "Technique flashy et explosive, balance offensif/défensif",
+    "image_url": "https://kimetsu.com/anime/character/",
+    "techniques": [
+      {
+        "number": 1,
+        "name": "Sonic Strike",
+        "damage_multiplier": 1.1,
+        "stamina_cost": 16,
+        "description": "Coup sonique"
+      },
+      {
+        "number": 2,
+        "name": "Sonic Explosion",
+        "damage_multiplier": 1.4,
+        "stamina_cost": 22,
+        "description": "Explosion sonique"
+      },
+      {
+        "number": 3,
+        "name": "Drum Resonance",
+        "damage_multiplier": 1.3,
+        "stamina_cost": 19,
+        "description": "Résonance de tambour"
+      },
+      {
+        "number": 4,
+        "name": "Harmonic Clash",
+        "damage_multiplier": 1.5,
+        "stamina_cost": 24,
+        "description": "Choc harmonique"
+      },
+      {
+        "number": 5,
+        "name": "Soundwave Prison",
+        "damage_multiplier": 1.2,
+        "stamina_cost": 18,
+        "description": "Prison d'onde sonore"
+      }
+    ]
+  },
+  "serpent": {
+    "name": "Souffle du Serpent",
+    "emoji": "🐍",
+    "color": 7061943,
+    "description": "Technique agile et venimeuse, empoisonnement",
+    "image_url": "https://kimetsu.com/anime/character/",
+    "techniques": [
+      {
+        "number": 1,
+        "name": "Serpent Bite",
+        "damage_multiplier": 1.2,
+        "stamina_cost": 17,
+        "description": "Morsure de serpent"
+      },
+      {
+        "number": 2,
+        "name": "Coil Strike",
+        "damage_multiplier": 1.3,
+        "stamina_cost": 20,
+        "description": "Coup de serpent enroulé"
+      },
+      {
+        "number": 3,
+        "name": "Venom Spread",
+        "damage_multiplier": 1.1,
+        "stamina_cost": 16,
+        "description": "Propagation de venin"
+      },
+      {
+        "number": 4,
+        "name": "Fang Mark",
+        "damage_multiplier": 1.4,
+        "stamina_cost": 22,
+        "description": "Marque de croc"
+      },
+      {
+        "number": 5,
+        "name": "Serpent's Crucible",
+        "damage_multiplier": 1.5,
+        "stamina_cost": 25,
+        "description": "Creuset du serpent"
+      }
+    ]
+  },
+  "flower": {
+    "name": "Souffle de la Fleur",
+    "emoji": "🌸",
+    "color": 16777088,
+    "description": "Technique gracieuse et dangereuse, équilibrée",
+    "image_url": "https://kimetsu.com/anime/character/",
+    "techniques": [
+      {
+        "number": 1,
+        "name": "Petal Dance",
+        "damage_multiplier": 1.1,
+        "stamina_cost": 16,
+        "description": "Danse des pétales"
+      },
+      {
+        "number": 2,
+        "name": "Blooming Flame",
+        "damage_multiplier": 1.3,
+        "stamina_cost": 20,
+        "description": "Flamme épanouie"
+      },
+      {
+        "number": 3,
+        "name": "Graceful Cleave",
+        "damage_multiplier": 1.2,
+        "stamina_cost": 18,
+        "description": "Coup gracieux"
+      },
+      {
+        "number": 4,
+        "name": "Flower Breath Final Form",
+        "damage_multiplier": 1.6,
+        "stamina_cost": 28,
+        "description": "Forme finale du souffle floral"
+      },
+      {
+        "number": 5,
+        "name": "Raging Swirl Slash",
+        "damage_multiplier": 1.4,
+        "stamina_cost": 23,
+        "description": "Coup tourbillonnant enragé"
+      }
+    ]
+  },
+  "mist": {
+    "name": "Souffle du Brouillard",
+    "emoji": "🌫️",
+    "color": 12632256,
+    "description": "Technique illusoire et insaisissable, esquive augmentée",
+    "image_url": "https://kimetsu.com/anime/character/",
+    "techniques": [
+      {
+        "number": 1,
+        "name": "Obscuring Fog",
+        "damage_multiplier": 1.0,
+        "stamina_cost": 15,
+        "description": "Brouillard occultant"
+      },
+      {
+        "number": 2,
+        "name": "Phantasmal Mist",
+        "damage_multiplier": 1.2,
+        "stamina_cost": 18,
+        "description": "Brouillard fantomatique"
+      },
+      {
+        "number": 3,
+        "name": "Shifting Fog",
+        "damage_multiplier": 0.9,
+        "stamina_cost": 14,
+        "description": "Brouillard mouvant (esquive)"
+      },
+      {
+        "number": 4,
+        "name": "Mist Breathing Finality",
+        "damage_multiplier": 1.5,
+        "stamina_cost": 25,
+        "description": "Finalité du souffle brumeux"
+      },
+      {
+        "number": 5,
+        "name": "Mirage Dance",
+        "damage_multiplier": 1.3,
+        "stamina_cost": 20,
+        "description": "Danse du mirage"
+      }
+    ]
+  },
+  "love": {
+    "name": "Souffle de l'Amour",
+    "emoji": "💕",
+    "color": 16711680,
+    "description": "Technique passionate et guérissante, soin inclus",
+    "image_url": "https://kimetsu.com/anime/character/",
+    "techniques": [
+      {
+        "number": 1,
+        "name": "Passionate Strike",
+        "damage_multiplier": 1.1,
+        "stamina_cost": 16,
+        "description": "Coup passionné"
+      },
+      {
+        "number": 2,
+        "name": "Affectionate Slash",
+        "damage_multiplier": 1.2,
+        "stamina_cost": 18,
+        "description": "Coup affectueux"
+      },
+      {
+        "number": 3,
+        "name": "Healing Pulse",
+        "damage_multiplier": 0.5,
+        "stamina_cost": 12,
+        "description": "Pulsion curative (soin)"
+      },
+      {
+        "number": 4,
+        "name": "Embrace of Love",
+        "damage_multiplier": 1.4,
+        "stamina_cost": 22,
+        "description": "Étreinte de l'amour"
+      },
+      {
+        "number": 5,
+        "name": "Love's Awakening",
+        "damage_multiplier": 1.6,
+        "stamina_cost": 28,
+        "description": "Réveil de l'amour"
+      }
+    ]
+  }
+}
