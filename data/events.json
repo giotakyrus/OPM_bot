@@ -1,0 +1,38 @@
+{
+  "active_events": [],
+  "event_history": [],
+  "available_events": [
+    {
+      "id": "xp_double",
+      "name": "Double XP Event",
+      "emoji": "⚡",
+      "multiplier": 2.0,
+      "type": "xp",
+      "description": "Les récompenses XP sont doublées"
+    },
+    {
+      "id": "coin_boost",
+      "name": "Gold Boost Event",
+      "emoji": "💰",
+      "multiplier": 1.5,
+      "type": "gold",
+      "description": "Les récompenses en pièces sont augmentées de 50%"
+    },
+    {
+      "id": "xp_triple",
+      "name": "Triple XP Event",
+      "emoji": "🔥",
+      "multiplier": 3.0,
+      "type": "xp",
+      "description": "Les récompenses XP sont triplées (Spécial)"
+    },
+    {
+      "id": "demon_rare",
+      "name": "Rare Demon Spawn Event",
+      "emoji": "👹",
+      "multiplier": 1.0,
+      "type": "demon_spawn",
+      "description": "Les démons rares apparaissent plus souvent"
+    }
+  ]
+}
