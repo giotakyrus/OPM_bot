@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import json
 import os
 from dotenv import load_dotenv
 import config
@@ -32,6 +33,7 @@ async def on_ready():
     # Valider la config
     try:
         config.validate_config()
+        print("✅ Configuration validée!")
     except Exception as e:
         print(f"❌ Erreur config: {e}")
     
@@ -223,6 +225,27 @@ async def stats_bot(interaction: discord.Interaction):
 
 # ========================= COMMANDES ADMIN =========================
 
+def load_players_data():
+    """Charger les données des joueurs de manière sécurisée"""
+    try:
+        with open(config.PLAYERS_FILE, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
+    except json.JSONDecodeError:
+        print(f"❌ Erreur: {config.PLAYERS_FILE} est corrompu")
+        return {}
+
+def save_players_data(data):
+    """Sauvegarder les données des joueurs de manière sécurisée"""
+    try:
+        with open(config.PLAYERS_FILE, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        return True
+    except Exception as e:
+        print(f"❌ Erreur sauvegarde: {e}")
+        return False
+
 @bot.tree.command(name="admin_user", description="[ADMIN] Gérer les joueurs")
 @discord.app_commands.describe(
     action="view / give_xp / give_coins / set_rank / ban",
@@ -247,15 +270,7 @@ async def admin_user(
         )
     
     user_id = user.id
-    players_data = {}
-    
-    # Charger les joueurs
-    try:
-        import json
-        with open(config.PLAYERS_FILE, 'r', encoding='utf-8') as f:
-            players_data = json.load(f)
-    except FileNotFoundError:
-        players_data = {}
+    players_data = load_players_data()
     
     if action.lower() == "view" or action.lower() == "voir":
         if str(user_id) not in players_data:
@@ -294,16 +309,18 @@ async def admin_user(
         
         players_data[str(user_id)]['xp'] += amount
         
-        # Sauvegarder
-        import json
-        with open(config.PLAYERS_FILE, 'w', encoding='utf-8') as f:
-            json.dump(players_data, f, indent=2, ensure_ascii=False)
-        
-        embed = discord.Embed(
-            title="✅ XP Donné",
-            description=f"{user.mention} a reçu **+{amount} XP**",
-            color=0x00FF00
-        )
+        if save_players_data(players_data):
+            embed = discord.Embed(
+                title="✅ XP Donné",
+                description=f"{user.mention} a reçu **+{amount} XP**",
+                color=0x00FF00
+            )
+        else:
+            embed = discord.Embed(
+                title="❌ Erreur",
+                description="Impossible de sauvegarder!",
+                color=0xFF0000
+            )
         await interaction.response.send_message(embed=embed, ephemeral=True)
     
     elif action.lower() == "ban" or action.lower() == "bannir":
@@ -323,16 +340,18 @@ async def admin_user(
             players_data[str(user_id)]['banned'] = True
             players_data[str(user_id)]['ban_reason'] = 'Admin ban'
         
-        # Sauvegarder
-        import json
-        with open(config.PLAYERS_FILE, 'w', encoding='utf-8') as f:
-            json.dump(players_data, f, indent=2, ensure_ascii=False)
-        
-        embed = discord.Embed(
-            title="🚫 Joueur Banni",
-            description=f"{user.mention} a été **banni** du jeu!",
-            color=0xFF0000
-        )
+        if save_players_data(players_data):
+            embed = discord.Embed(
+                title="🚫 Joueur Banni",
+                description=f"{user.mention} a été **banni** du jeu!",
+                color=0xFF0000
+            )
+        else:
+            embed = discord.Embed(
+                title="❌ Erreur",
+                description="Impossible de sauvegarder!",
+                color=0xFF0000
+            )
         await interaction.response.send_message(embed=embed, ephemeral=True)
     
     else:
@@ -395,15 +414,18 @@ async def admin_config(
             )
             return await interaction.response.send_message(embed=embed, ephemeral=True)
         
-        import json
-        with open(config.PLAYERS_FILE, 'w', encoding='utf-8') as f:
-            json.dump({}, f)
-        
-        embed = discord.Embed(
-            title="✅ Réinitialisation",
-            description="Tous les profils ont été supprimés!",
-            color=0xFF0000
-        )
+        if save_players_data({}):
+            embed = discord.Embed(
+                title="✅ Réinitialisation",
+                description="Tous les profils ont été supprimés!",
+                color=0xFF0000
+            )
+        else:
+            embed = discord.Embed(
+                title="❌ Erreur",
+                description="Impossible de réinitialiser!",
+                color=0xFF0000
+            )
         await interaction.response.send_message(embed=embed, ephemeral=True)
     
     else:
