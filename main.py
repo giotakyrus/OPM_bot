@@ -62,6 +62,14 @@ def load_demons_data():
     except (FileNotFoundError, json.JSONDecodeError):
         return {}
 
+def load_missions_data():
+    """Charger les données des missions"""
+    try:
+        with open(config.MISSIONS_FILE, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {"missions": []}
+
 # ========================= BOT EVENTS =========================
 
 @bot.event
@@ -350,6 +358,151 @@ async def hunt(interaction: discord.Interaction):
         
         await interaction.followup.send(embed=victory_embed)
 
+@bot.tree.command(name="mission", description="Accepter une mission")
+@discord.app_commands.describe(mission_id="ID de la mission (1-300)")
+async def mission(interaction: discord.Interaction, mission_id: int):
+    """Lance une mission"""
+    user_id = interaction.user.id
+    
+    if not player_exists(user_id):
+        embed = discord.Embed(
+            title="❌ Profil Non Trouvé",
+            description="Utilise `/test_souffle` pour commencer!",
+            color=0xFF0000
+        )
+        return await interaction.response.send_message(embed=embed, ephemeral=True)
+    
+    players_data = load_players_data()
+    player = players_data[str(user_id)]
+    
+    if 'breathing' not in player:
+        embed = discord.Embed(
+            title="❌ Pas de Souffle",
+            description="Passe `/test_souffle` pour débloquer ton souffle!",
+            color=0xFF0000
+        )
+        return await interaction.response.send_message(embed=embed, ephemeral=True)
+    
+    # Charger les missions
+    missions_data = load_missions_data()
+    mission_obj = None
+    
+    for m in missions_data.get('missions', []):
+        if m['id'] == mission_id:
+            mission_obj = m
+            break
+    
+    if not mission_obj:
+        embed = discord.Embed(
+            title="❌ Mission Non Trouvée",
+            description=f"Mission #{mission_id} n'existe pas!",
+            color=0xFF0000
+        )
+        return await interaction.response.send_message(embed=embed, ephemeral=True)
+    
+    # Vérifier les prérequis
+    missions_completed = player.get('missions_completed', 0)
+    player_level = player.get('level', 1)
+    
+    if mission_id <= 30 and missions_completed < 0:
+        pass  # Missions faciles toujours disponibles
+    elif mission_id <= 100 and missions_completed < 30:
+        embed = discord.Embed(
+            title="🔐 Mission Verrouillée",
+            description=f"Tu dois compléter 30 missions faciles d'abord!\nProgression: {missions_completed}/30",
+            color=0xFF6A00
+        )
+        return await interaction.response.send_message(embed=embed, ephemeral=True)
+    elif mission_id > 100 and missions_completed < 100:
+        embed = discord.Embed(
+            title="🔐 Mission Verrouillée",
+            description=f"Tu dois compléter 100 missions d'abord!\nProgression: {missions_completed}/100",
+            color=0xFF6A00
+        )
+        return await interaction.response.send_message(embed=embed, ephemeral=True)
+    
+    # Afficher la mission
+    difficulty_emoji = "🟢" if mission_obj['difficulty'] == 'easy' else "🟡" if mission_obj['difficulty'] == 'hard' else "🔴"
+    boss_text = "👑 **BOSS**" if mission_obj.get('boss', False) else ""
+    
+    embed = discord.Embed(
+        title=f"{difficulty_emoji} Mission #{mission_id}: {mission_obj['name']}",
+        description=mission_obj['description'],
+        color=0xFF6A00
+    )
+    
+    embed.add_field(
+        name="Difficulté",
+        value=mission_obj['difficulty'].upper(),
+        inline=True
+    )
+    
+    embed.add_field(
+        name="Ennemi",
+        value=mission_obj['demon'],
+        inline=True
+    )
+    
+    embed.add_field(
+        name="💰 Récompenses",
+        value=f"🎯 {mission_obj['xp_reward']} XP\n💰 {mission_obj['gold_reward']} coins",
+        inline=False
+    )
+    
+    if boss_text:
+        embed.add_field(name="Type", value=boss_text, inline=False)
+    
+    embed.set_footer(text="Combat simulé - Victoire automatique en démo!")
+    
+    await interaction.response.send_message(embed=embed)
+    
+    # Simuler une victoire
+    await asyncio.sleep(2)
+    
+    # Mise à jour du joueur
+    xp_reward = mission_obj['xp_reward']
+    gold_reward = mission_obj['gold_reward']
+    
+    player['xp'] = player.get('xp', 0) + xp_reward
+    player['coins'] = player.get('coins', 0) + gold_reward
+    player['missions_completed'] = player.get('missions_completed', 0) + 1
+    players_data[str(user_id)] = player
+    save_players_data(players_data)
+    
+    # Vérifier level up
+    xp_needed = config.XP_PER_LEVEL_BASE * player.get('level', 1)
+    if player['xp'] >= xp_needed:
+        player['level'] = player.get('level', 1) + 1
+        player['xp'] = 0
+        players_data[str(user_id)] = player
+        save_players_data(players_data)
+        
+        victory_embed = discord.Embed(
+            title="🎉 MISSION RÉUSSIE!",
+            description=f"Tu as complété **{mission_obj['name']}**!",
+            color=0x00FF00
+        )
+        victory_embed.add_field(
+            name="Récompenses",
+            value=f"🎯 +{xp_reward} XP\n💰 +{gold_reward} coins\n⬆️ **LEVEL UP! Niveau {player['level']}!**",
+            inline=False
+        )
+        
+        await interaction.followup.send(embed=victory_embed)
+    else:
+        victory_embed = discord.Embed(
+            title="🎉 MISSION RÉUSSIE!",
+            description=f"Tu as complété **{mission_obj['name']}**!",
+            color=0x00FF00
+        )
+        victory_embed.add_field(
+            name="Récompenses",
+            value=f"🎯 +{xp_reward} XP\n💰 +{gold_reward} coins",
+            inline=False
+        )
+        
+        await interaction.followup.send(embed=victory_embed)
+
 @bot.tree.command(name="aide", description="Afficher l'aide du jeu")
 async def aide(interaction: discord.Interaction):
     """Affiche l'aide complète"""
@@ -366,8 +519,8 @@ async def aide(interaction: discord.Interaction):
     )
     
     embed.add_field(
-        name="🎯 Commandes Disponibles",
-        value="`/profil` - Voir ton profil\n`/hunt` - Chasser des démons\n`/souffles` - Lister les souffles\n`/stats_bot` - Statistiques du serveur",
+        name="🎯 Commandes Principales",
+        value="`/profil` - Voir ton profil\n`/hunt` - Chasser des démons\n`/mission [id]` - Accepter une mission\n`/souffles` - Lister les souffles\n`/stats_bot` - Statistiques",
         inline=False
     )
     
@@ -377,7 +530,7 @@ async def aide(interaction: discord.Interaction):
         inline=False
     )
     
-    embed.set_footer(text="Le jeu est en développement! 🚀 Phase 2 en cours")
+    embed.set_footer(text="Le jeu est en développement! 🚀 Phase 3 en cours")
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
 @bot.tree.command(name="souffles", description="Voir la liste des souffles disponibles")
@@ -417,10 +570,10 @@ async def stats_bot(interaction: discord.Interaction):
     
     embed.add_field(name="👥 Joueurs", value=f"**{total_players}**", inline=True)
     embed.add_field(name="💨 Souffles", value=f"**{len(config.BREATHING_STYLES)}**", inline=True)
-    embed.add_field(name="�� Missions", value=f"**{config.TOTAL_MISSIONS}**", inline=True)
+    embed.add_field(name="🎯 Missions", value=f"**{config.TOTAL_MISSIONS}**", inline=True)
     embed.add_field(name="👹 Démons", value=f"**{total_demons}**", inline=True)
     embed.add_field(name="🏆 Rangs", value="**11**", inline=True)
-    embed.add_field(name="📈 Phase", value="**Phase 2 - Hunt & Test**", inline=True)
+    embed.add_field(name="📈 Phase", value="**Phase 3 - Missions**", inline=True)
     
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
@@ -456,6 +609,7 @@ async def admin_user(
         embed.add_field(name="XP", value=player.get('xp', 0))
         embed.add_field(name="Coins", value=player.get('coins', 0))
         embed.add_field(name="Souffle", value=player.get('breathing', '❌ Pas de souffle'))
+        embed.add_field(name="Missions", value=player.get('missions_completed', 0))
         embed.set_thumbnail(url=user.display_avatar.url)
         
         await interaction.response.send_message(embed=embed, ephemeral=True)
