@@ -1,0 +1,87 @@
+{
+  "missions": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "name": "Shadow Wraith",
+      "description": "Chasse le Wraith qui terrorise les villages",
+      "demon": "Shadow Wraith",
+      "xp_reward": 50,
+      "gold_reward": 75,
+      "boss": false
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "name": "Lesser Demon",
+      "description": "Élimine ce démon mineur",
+      "demon": "Lesser Demon",
+      "xp_reward": 60,
+      "gold_reward": 85,
+      "boss": false
+    },
+    {
+      "id": 3,
+      "difficulty": "easy",
+      "name": "Night Stalker",
+      "description": "Chasse le Night Stalker",
+      "demon": "Night Stalker",
+      "xp_reward": 55,
+      "gold_reward": 80,
+      "boss": false
+    },
+    {
+      "id": 30,
+      "difficulty": "easy",
+      "name": "Enmu - Lower Moon 6",
+      "description": "Boss Final de la difficulté FACILE - Enmu doit être vaincu!",
+      "demon": "Enmu",
+      "xp_reward": 500,
+      "gold_reward": 500,
+      "boss": true,
+      "unlocks": "hard_difficulty"
+    },
+    {
+      "id": 101,
+      "difficulty": "hard",
+      "name": "Lower Moon 5 - Rui",
+      "description": "Première mission de difficulté DIFFICILE",
+      "demon": "Rui",
+      "xp_reward": 200,
+      "gold_reward": 250,
+      "boss": false
+    },
+    {
+      "id": 100,
+      "difficulty": "hard",
+      "name": "Gyutaro & Daki - Upper Moon 6",
+      "description": "Boss Final de la difficulté DIFFICILE - Les frères démons!",
+      "demon": "Gyutaro & Daki",
+      "xp_reward": 1000,
+      "gold_reward": 1000,
+      "boss": true,
+      "unlocks": "hell_difficulty"
+    },
+    {
+      "id": 201,
+      "difficulty": "hell",
+      "name": "Upper Moon 2 - Douma",
+      "description": "Première mission de difficulté ENFER",
+      "demon": "Douma",
+      "xp_reward": 500,
+      "gold_reward": 600,
+      "boss": false
+    },
+    {
+      "id": 300,
+      "difficulty": "hell",
+      "name": "Muzan Kibutsuji - Roi des Démons",
+      "description": "Boss Final ULTIME - Vaincs Muzan!",
+      "demon": "Muzan",
+      "xp_reward": 5000,
+      "gold_reward": 5000,
+      "boss": true,
+      "unlocks": "end_game"
+    }
+  ]
+}
